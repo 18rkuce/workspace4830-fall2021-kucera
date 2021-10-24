@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,15 +24,15 @@ public class MyServletHibernateDBKucera extends HttpServlet {
       response.setContentType("text/html");
 
       // #1
-      UtilDBKucera.createAppointments("10/23/2021", "3:30", "Applebees", "Fancy Like");
-      UtilDBKucera.createAppointments("10/24/2021", "4:15", "Applees again", "Bouji");
+      //UtilDBKucera.createAppointments("10/23/2021", "3:30", "Applebees", "Fancy Like");
+      //UtilDBKucera.createAppointments("10/24/2021", "4:15", "Applees again", "Bouji");
       
       // #2
       retrieveDisplayData(response.getWriter());
    }
 
    void retrieveDisplayData(PrintWriter out) {
-      String title = "Database Result";
+      String title = "Appointments";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
             "transitional//en\">\n"; //
       out.println(docType + //
@@ -41,9 +42,10 @@ public class MyServletHibernateDBKucera extends HttpServlet {
             "<h1 align=\"center\">" + title + "</h1>\n");
       out.println("<ul>");
       List<AppointmentKucera> listAppointments = UtilDBKucera.listAppointments();
+      Collections.sort(listAppointments);
       for (AppointmentKucera appointment : listAppointments) {
-         System.out.println("[DBG] "
-               + appointment.getDate() + ", " //
+         System.out.println(
+                 appointment.getDate() + ", " //
                + appointment.getTime() + ", " //
                + appointment.getLocation() + ", " //
                + appointment.getDescription());
@@ -56,6 +58,12 @@ public class MyServletHibernateDBKucera extends HttpServlet {
       }
       out.println("</ul>");
       out.println("</body></html>");
+      out.println("<nav>\r\n" + 
+      		"<a href=\"/webproject-tech-ex-kucera/InsertAppointment.html\">Add Appointment</a> <br>\r\n" + 
+      		"</nav>");
+      out.println("<nav>\r\n" + 
+      		"<a href=\"/webproject-tech-ex-kucera/SearchAppointment.html\">Search Appointment</a> <br>\r\n" + 
+      		"</nav>");
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

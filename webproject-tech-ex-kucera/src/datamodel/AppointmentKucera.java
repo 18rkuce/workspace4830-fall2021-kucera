@@ -1,4 +1,9 @@
 package datamodel;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "appointmentKucera1")
-public class AppointmentKucera {
+public class AppointmentKucera implements Comparable<AppointmentKucera>{
 
    @Id  // primary key
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,9 +100,22 @@ public class AppointmentKucera {
       this.DESCRIPTION = description;
    }
 
-
    @Override
    public String toString() {
       return "Appointment: " + this.id + ", " + this.DATE + ", " + this.TIME + ", " + this.LOCATION + ", " + this.DESCRIPTION;
+   }
+   
+   @Override
+   public int compareTo(AppointmentKucera o) {
+	   SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	   try {
+		   Date date1 = dateFormat.parse(this.DATE);
+		   Date date2 = dateFormat.parse(o.DATE);
+		   return date1.compareTo(date2);
+	   }
+	   catch (ParseException e)
+	   {
+		   return 0;
+	   }
    }
 }
