@@ -40,7 +40,7 @@ public class InsertAppointment extends HttpServlet implements Info {
       out.println("<li> Location: " + LOCATION);
       out.println("<li> Description: " + DESCRIPTION);
       out.println("</ul>");
-      out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
+      out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Appointment</a> <br>");
       out.println("</body></html>");
    }
 

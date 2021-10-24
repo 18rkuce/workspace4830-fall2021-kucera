@@ -32,22 +32,23 @@ footer {
 
 <body>
 <header>
-<h1> Add Appointment</h1>
+<h1> Appointment Tracker </h1>
 </header>
 
 <nav>
 <a href="/webproject-tech-ex-kucera/SearchAppointment.html">Search Appointment</a> <br>
+<a href="/webproject-tech-ex-kucera/MyServletHibernateDBKucera">Home Page</a> <br>
 </nav>
 
 <section>
-	<h1>User Input</h1>
+	<h1>Add Appointment</h1>
 	
 	<form action="InsertAppointment" method="POST">
 	
-		DATE: <input type="text" name="DATE"> <br />
-		TIME: <input type="text" name="TIME"> <br />
-		LOCATION: <input type="text" name="LOCATION"> <br />
-		DESCRIPTION: <input type="text" name="DESCRIPTION"> <br />
+		Date(mm/dd/yyyy): <input type="text" name="DATE"> <br />
+		Time: <input type="text" name="TIME"> <br />
+		Location: <input type="text" name="LOCATION"> <br />
+		Description: <input type="text" name="DESCRIPTION"> <br />
 		
 		<input type="submit" value="Submit" />
 	</form>

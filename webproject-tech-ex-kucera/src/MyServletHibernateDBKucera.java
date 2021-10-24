@@ -32,14 +32,15 @@ public class MyServletHibernateDBKucera extends HttpServlet {
    }
 
    void retrieveDisplayData(PrintWriter out) {
-      String title = "Appointments";
+      String title = "Appointments:";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 " + //
             "transitional//en\">\n"; //
       out.println(docType + //
             "<html>\n" + //
             "<head><title>" + title + "</title></head>\n" + //
             "<body bgcolor=\"#f0f0f0\">\n" + //
-            "<h1 align=\"center\">" + title + "</h1>\n");
+            "<img src=\"/webproject-tech-ex-kucera/appointment_tracker_logo.PNG\">" +
+            "<h1 align=\"left\">" + title + "</h1>\n");
       out.println("<ul>");
       List<AppointmentKucera> listAppointments = UtilDBKucera.listAppointments();
       Collections.sort(listAppointments);

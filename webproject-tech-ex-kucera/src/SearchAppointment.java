@@ -42,19 +42,19 @@ public class SearchAppointment extends HttpServlet implements Info {
       }
       display(listAppointments, out);
       out.println("</ul>");
-      out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
+      out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Appointment</a> <br>");
       out.println("</body></html>");
    }
 
    void display(List<AppointmentKucera> listAppointments, PrintWriter out) {
       for (AppointmentKucera appointment : listAppointments) {
-         System.out.println("[DBG] " + appointment.getId() + ", " //
-               + appointment.getDate() + ", " //
+         System.out.println(
+        		 appointment.getDate() + ", " //
                + appointment.getTime() + ", " //
                + appointment.getLocation() + ", " //
                + appointment.getDescription());
 
-         out.println("<li>" + appointment.getId() + ", " //
+         out.println("<li>" 
            	 + appointment.getDate() + ", " //
              + appointment.getTime() + ", " //
              + appointment.getLocation() + ", " //
