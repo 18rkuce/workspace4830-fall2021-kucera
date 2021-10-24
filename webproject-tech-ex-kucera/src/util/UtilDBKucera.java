@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import datamodel.EmployeeKucera;
+import datamodel.AppointmentKucera;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -35,18 +35,18 @@ public class UtilDBKucera {
       return sessionFactory;
    }
 
-   public static List<EmployeeKucera> listEmployees() {
-      List<EmployeeKucera> resultList = new ArrayList<EmployeeKucera>();
+   public static List<AppointmentKucera> listAppointments() {
+      List<AppointmentKucera> resultList = new ArrayList<AppointmentKucera>();
 
       Session session = getSessionFactory().openSession();
       Transaction tx = null;  // each process needs transaction and commit the changes in DB.
 
       try {
          tx = session.beginTransaction();
-         List<?> employees = session.createQuery("FROM EmployeeKucera").list();
-         for (Iterator<?> iterator = employees.iterator(); iterator.hasNext();) {
-            EmployeeKucera employee = (EmployeeKucera) iterator.next();
-            resultList.add(employee);
+         List<?> appointments = session.createQuery("FROM AppointmentKucera").list();
+         for (Iterator<?> iterator = appointments.iterator(); iterator.hasNext();) {
+            AppointmentKucera appointment = (AppointmentKucera) iterator.next();
+            resultList.add(appointment);
          }
          tx.commit();
       } catch (HibernateException e) {
@@ -59,21 +59,21 @@ public class UtilDBKucera {
       return resultList;
    }
 
-   public static List<EmployeeKucera> listEmployees(String keyword) {
-      List<EmployeeKucera> resultList = new ArrayList<EmployeeKucera>();
+   public static List<AppointmentKucera> listAppointments(String keyword) {
+      List<AppointmentKucera> resultList = new ArrayList<AppointmentKucera>();
 
       Session session = getSessionFactory().openSession();
       Transaction tx = null;
 
       try {
          tx = session.beginTransaction();
-         System.out.println((EmployeeKucera)session.get(EmployeeKucera.class, 1)); // use "get" to fetch data
+         System.out.println((AppointmentKucera)session.get(AppointmentKucera.class, 1)); // use "get" to fetch data
         // Query q = session.createQuery("FROM Employee");
-         List<?> employees = session.createQuery("FROM EmployeeKucera").list();
-         for (Iterator<?> iterator = employees.iterator(); iterator.hasNext();) {
-            EmployeeKucera employee = (EmployeeKucera) iterator.next();
-            if (employee.getName().startsWith(keyword)) {
-               resultList.add(employee);
+         List<?> appointments = session.createQuery("FROM AppointmentKucera").list();
+         for (Iterator<?> iterator = appointments.iterator(); iterator.hasNext();) {
+            AppointmentKucera appointment = (AppointmentKucera) iterator.next();
+            if (appointment.getDate().startsWith(keyword)) {
+               resultList.add(appointment);
             }
          }
          tx.commit();
@@ -87,12 +87,12 @@ public class UtilDBKucera {
       return resultList;
    }
 
-   public static void createEmployees(String userName, String age) {
+   public static void createAppointments(String DATE, String TIME, String LOCATION, String DESCRIPTION) {
       Session session = getSessionFactory().openSession();
       Transaction tx = null;
       try {
          tx = session.beginTransaction();
-         session.save(new EmployeeKucera(userName, Integer.valueOf(age)));
+         session.save(new AppointmentKucera(DATE, TIME, LOCATION, DESCRIPTION));
          tx.commit();
       } catch (HibernateException e) {
          if (tx != null)

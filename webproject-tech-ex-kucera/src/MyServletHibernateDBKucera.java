@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodel.EmployeeKucera;
+import datamodel.AppointmentKucera;
 import util.UtilDBKucera;
 
 @WebServlet("/MyServletHibernateDBKucera")
@@ -23,8 +23,8 @@ public class MyServletHibernateDBKucera extends HttpServlet {
       response.setContentType("text/html");
 
       // #1
-      UtilDBKucera.createEmployees("user3", "33");
-      UtilDBKucera.createEmployees("user4", "44");
+      UtilDBKucera.createAppointments("10/23/2021", "3:30", "Applebees", "Fancy Like");
+      UtilDBKucera.createAppointments("10/24/2021", "4:15", "Applees again", "Bouji");
       
       // #2
       retrieveDisplayData(response.getWriter());
@@ -40,15 +40,19 @@ public class MyServletHibernateDBKucera extends HttpServlet {
             "<body bgcolor=\"#f0f0f0\">\n" + //
             "<h1 align=\"center\">" + title + "</h1>\n");
       out.println("<ul>");
-      List<EmployeeKucera> listEmployees = UtilDBKucera.listEmployees();
-      for (EmployeeKucera employee : listEmployees) {
-         System.out.println("[DBG] " + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getAge());
+      List<AppointmentKucera> listAppointments = UtilDBKucera.listAppointments();
+      for (AppointmentKucera appointment : listAppointments) {
+         System.out.println("[DBG] "
+               + appointment.getDate() + ", " //
+               + appointment.getTime() + ", " //
+               + appointment.getLocation() + ", " //
+               + appointment.getDescription());
 
-         out.println("<li>" + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getAge() + "</li>");
+         out.println("<li>"
+               + appointment.getDate() + ", " //
+               + appointment.getTime() + ", " //
+               + appointment.getLocation() + ", " //
+               + appointment.getDescription() + "</li>");
       }
       out.println("</ul>");
       out.println("</body></html>");

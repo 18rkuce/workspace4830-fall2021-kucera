@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodel.EmployeeKucera;
+import datamodel.AppointmentKucera;
 import util.Info;
 import util.UtilDBKucera;
 
@@ -34,27 +34,31 @@ public class SimpleSearchHB extends HttpServlet implements Info {
             "<h1 align=\"center\">" + title + "</h1>\n");
       out.println("<ul>");
 
-      List<EmployeeKucera> listEmployees = null;
+      List<AppointmentKucera> listAppointments = null;
       if (keyword != null && !keyword.isEmpty()) {
-         listEmployees = UtilDBKucera.listEmployees(keyword);
+    	  listAppointments = UtilDBKucera.listAppointments(keyword);
       } else {
-         listEmployees = UtilDBKucera.listEmployees();
+    	  listAppointments = UtilDBKucera.listAppointments();
       }
-      display(listEmployees, out);
+      display(listAppointments, out);
       out.println("</ul>");
       out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
       out.println("</body></html>");
    }
 
-   void display(List<EmployeeKucera> listEmployees, PrintWriter out) {
-      for (EmployeeKucera employee : listEmployees) {
-         System.out.println("[DBG] " + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getAge());
+   void display(List<AppointmentKucera> listAppointments, PrintWriter out) {
+      for (AppointmentKucera appointment : listAppointments) {
+         System.out.println("[DBG] " + appointment.getId() + ", " //
+               + appointment.getDate() + ", " //
+               + appointment.getTime() + ", " //
+               + appointment.getLocation() + ", " //
+               + appointment.getDescription());
 
-         out.println("<li>" + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getAge() + "</li>");
+         out.println("<li>" + appointment.getId() + ", " //
+           	 + appointment.getDate() + ", " //
+             + appointment.getTime() + ", " //
+             + appointment.getLocation() + ", " //
+             + appointment.getDescription() + "</li>");
       }
    }
 

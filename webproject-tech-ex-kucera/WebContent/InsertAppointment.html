@@ -2,7 +2,7 @@
 <head>
 <style>
 header {
-    background-color:black;
+    background-color:red;
     color:white;
     text-align:center;
     padding:5px;	 
@@ -11,7 +11,7 @@ nav {
     line-height:30px;
     background-color:#eeeeee;
     height:300px;
-    width:100px;
+    width:150px;
     float:left;
     padding:5px;	      
 }
@@ -32,11 +32,11 @@ footer {
 
 <body>
 <header>
-<h1> Insert Data (Hibernate)</h1>
+<h1> Add Appointment</h1>
 </header>
 
 <nav>
-<a href="/webproject/simpleSearchHB.html">Search Data</a> <br>
+<a href="/webproject-tech-ex-kucera/simpleSearchHB.html">Search Appointment</a> <br>
 </nav>
 
 <section>
@@ -44,11 +44,15 @@ footer {
 	
 	<form action="SimpleInsertHB" method="POST">
 	
-		User Name: <input type="text" name="userName"> <br />
-		Age: <input type="text" name="age"> <br />
+		DATE: <input type="text" name="DATE"> <br />
+		TIME: <input type="text" name="TIME"> <br />
+		LOCATION: <input type="text" name="LOCATION"> <br />
+		DESCRIPTION: <input type="text" name="DESCRIPTION"> <br />
 		
 		<input type="submit" value="Submit" />
 	</form>
+	
+	<img src = "C:\Users\riley\Dropbox\My PC (DESKTOP-NED2PQO)\Documents\2021 FALL\Software Engineering\Tech Exercise\workspace-tech-ex-kucera\webproject-tech-ex-kucera\WebContent\bo_guo.PNG">
 
 </section>
 

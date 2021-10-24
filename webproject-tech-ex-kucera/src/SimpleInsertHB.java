@@ -19,9 +19,11 @@ public class SimpleInsertHB extends HttpServlet implements Info {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String userName = request.getParameter("userName").trim();
-      String age = request.getParameter("age").trim();
-      UtilDBKucera.createEmployees(userName, age);
+      String DATE = request.getParameter("DATE").trim();
+      String TIME = request.getParameter("TIME").trim();
+      String LOCATION = request.getParameter("LOCATION").trim();
+      String DESCRIPTION = request.getParameter("DESCRIPTION").trim();
+      UtilDBKucera.createAppointments(DATE, TIME, LOCATION, DESCRIPTION);
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
@@ -33,8 +35,10 @@ public class SimpleInsertHB extends HttpServlet implements Info {
             "<body bgcolor=\"#f0f0f0\">\n" + //
             "<h1 align=\"center\">" + title + "</h1>\n");
       out.println("<ul>");
-      out.println("<li> Name: " + userName);
-      out.println("<li> Age: " + age);
+      out.println("<li> Date: " + DATE);
+      out.println("<li> Time: " + TIME);
+      out.println("<li> Location: " + LOCATION);
+      out.println("<li> Description: " + DESCRIPTION);
       out.println("</ul>");
       out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
       out.println("</body></html>");
