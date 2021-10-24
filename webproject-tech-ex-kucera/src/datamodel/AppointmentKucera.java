@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  * @since J2SE-1.8
- CREATE TABLE appointmentKucera1 (
+ CREATE TABLE appointmentKucera (
   id INT NOT NULL AUTO_INCREMENT,    
   DATE VARCHAR(30) NOT NULL,   
   TIME VARCHAR(30) NOT NULL,
@@ -22,7 +22,7 @@ import javax.persistence.Table;
   PRIMARY KEY (id));
  */
 @Entity
-@Table(name = "appointmentKucera1")
+@Table(name = "appointmentKucera")
 public class AppointmentKucera implements Comparable<AppointmentKucera>{
 
    @Id  // primary key

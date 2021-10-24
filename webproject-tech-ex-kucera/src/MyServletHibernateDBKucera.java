@@ -23,11 +23,6 @@ public class MyServletHibernateDBKucera extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       response.setContentType("text/html");
 
-      // #1
-      //UtilDBKucera.createAppointments("10/23/2021", "3:30", "Applebees", "Fancy Like");
-      //UtilDBKucera.createAppointments("10/24/2021", "4:15", "Applees again", "Bouji");
-      
-      // #2
       retrieveDisplayData(response.getWriter());
    }
 
